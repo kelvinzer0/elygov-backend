@@ -1,0 +1,37 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "elygov-backend",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-07-09",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "triggers": {
+    "crons": [ // Cron Triggers
+      "*/5 * * * *", // for sending emails to participants
+      "0 0 * * *" // for resetting daily email counts
+    ]
+  },
+  "observability": { // Enable Workers Logs
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "vars": {
+    "JWT_SECRET": "elysiumx",
+    "FRONTEND_URL": "https://elygov-frontend.insidexofficial.workers.dev"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "VOTER_KV",
+      "id": "f3dc1998e0a54c5c8db8930b08885db1", // xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      "preview_id": "YOUR_KV_PREVIEW_NAMESPACE_ID_HERE" // xxxxxxxxxxxxxxxxxxxxxxxxx
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "voter-db",
+      "database_id": "fba7d82d-fff5-4073-8912-cb52321ff08d" // xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    }
+  ]
+}
